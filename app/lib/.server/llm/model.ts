@@ -3,7 +3,7 @@
 import { getAPIKey } from '~/lib/.server/llm/api-key';
 import { createAnthropic } from '@ai-sdk/anthropic';
 import { createOpenAI } from '@ai-sdk/openai';
-import { ollama } from 'ollama-ai-provider';
+import { createOllama } from 'ollama-ai-provider';
 
 export function getAnthropicModel(apiKey: string, model: string) {
   const anthropic = createAnthropic({
@@ -30,7 +30,10 @@ export function getGroqModel(apiKey: string, model: string) {
   return openai(model);
 }
 
-export function getOllamaModel(model: string) {
+export function getOllamaModel(url: string, model: string) {
+  const ollama = createOllama({
+    baseURL: url + '/api'
+  });
   return ollama(model);
 }
 
@@ -45,6 +48,6 @@ export function getModel(provider: string, model: string, env: Env) {
     case 'Groq':
       return getGroqModel(apiKey, model);
     default:
-      return getOllamaModel(model);
+      return getOllamaModel(url, model);
   }
 }
