@@ -48,6 +48,6 @@ export function getModel(provider: string, model: string, env: Env) {
     case 'Groq':
       return getGroqModel(apiKey, model);
     default:
-      return getOllamaModel(url, model);
+      return getOllamaModel(env.OLLAMA_BASE_URL, model);
   }
 }
