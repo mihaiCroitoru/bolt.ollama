@@ -31,15 +31,16 @@ export function getGroqModel(apiKey: string, model: string) {
 }
 
 export function getOllamaModel(url: string, model: string) {
+
   const ollama = createOllama({
-    baseURL: url + '/api'
+    baseURL: 'http://192.168.0.66:11434/api'
   });
   return ollama(model);
 }
 
 export function getModel(provider: string, model: string, env: Env) {
   const apiKey = getAPIKey(env, provider);
-  
+  console.log(env)
   switch (provider) {
     case 'Anthropic':
       return getAnthropicModel(apiKey, model);

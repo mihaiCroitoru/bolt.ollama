@@ -15,7 +15,7 @@ export function getAPIKey(cloudflareEnv: Env, provider: string) {
     case 'Groq':
       return env.GROQ_API_KEY || cloudflareEnv.GROQ_API_KEY;
     case 'Ollama':
-      return env.OLLAMMA_API_KEY || cloudflareEnv.OLLAMMA_API_KEY;
+      return env.OLLAMA_BASE_URL || env.OLLAMA_BASE_URL;
     default:
       return "";
   }
